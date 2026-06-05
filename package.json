@@ -1,0 +1,41 @@
+{
+  "name": "@webspellchecker/wproofreader-learnosity",
+  "version": "1.1.0",
+  "description": "WProofreader for Learnosity. Spelling, grammar and style assistance inside Learnosity rich-text widgets.",
+  "type": "module",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.js"
+    }
+  },
+  "files": [
+    "src/",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "test": "node --test tests/"
+  },
+  "keywords": [
+    "learnosity",
+    "wproofreader",
+    "webspellchecker",
+    "spell-check",
+    "grammar",
+    "ckeditor"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "homepage": "https://github.com/WebSpellChecker/wproofreader-learnosity",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WebSpellChecker/wproofreader-learnosity.git"
+  },
+  "private": true,
+  "license": "Apache-2.0"
+}
