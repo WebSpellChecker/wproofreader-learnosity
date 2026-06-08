@@ -2,9 +2,13 @@
 
 WProofreader for Learnosity. Spelling, grammar and style assistance inside Learnosity rich-text widgets, with one function call.
 
-> v1.1.0. Apache-2.0. TypeScript definitions included. Cloud and self-hosted WProofreader. Per-editor surface filter, lifecycle cleanup, locale-aware defaults, optional escape hatches for unusual host apps.
+> v1.2.0. Apache-2.0. TypeScript definitions included. Two install paths: npm (ESM) and CDN (IIFE). Cloud and self-hosted WProofreader. Per-editor surface filter, lifecycle cleanup, locale-aware defaults, optional escape hatches for unusual host apps.
 
 ## Install
+
+The connector offers two install paths. The runtime API is identical, `LearnosityWProofreader.init({...})` in both.
+
+### Via npm (Node host apps)
 
 ```bash
 npm install @webspellchecker/wproofreader-learnosity
@@ -17,6 +21,21 @@ LearnosityWProofreader.init({
   wproofreader: { serviceId: 'YOUR_WPROOFREADER_SERVICE_ID' }
 });
 ```
+
+### Via `<script>` tag (non-Node host apps)
+
+For host apps where adding a bundler is overkill (classic HTML, PHP, Python, Java, ASP.NET, Ruby), load the connector from jsDelivr:
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@webspellchecker/wproofreader-learnosity@1.2.0/dist/wproofreader-learnosity.min.js"></script>
+<script>
+  LearnosityWProofreader.init({
+    wproofreader: { serviceId: 'YOUR_WPROOFREADER_SERVICE_ID' }
+  });
+</script>
+```
+
+The bundle exposes a single global, `window.LearnosityWProofreader`, with the same `init` method. About 5 KB minified, no runtime dependencies. jsDelivr serves from npm, so the pinned URL above resolves once the package is published.
 
 ## Quickstart
 
