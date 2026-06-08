@@ -42,6 +42,6 @@
     "type": "git",
     "url": "https://github.com/WebSpellChecker/wproofreader-learnosity.git"
   },
-  "private": true,
+  "private": false,
   "license": "Apache-2.0"
 }
