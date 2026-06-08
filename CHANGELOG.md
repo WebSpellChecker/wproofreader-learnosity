@@ -4,6 +4,12 @@ All notable changes to `@webspellchecker/wproofreader-learnosity`.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.2.0]
+
+### Features
+
+- **Two install paths.** Existing ESM via npm, plus a new IIFE bundle (`dist/wproofreader-learnosity.min.js`) served from jsDelivr, exposing `window.LearnosityWProofreader.init` for host apps that load the connector via a `<script>` tag (PHP, Python, Java, ASP.NET, Ruby, classic HTML). About 5 KB minified, no runtime dependencies. Built with esbuild via `npm run build`; produced automatically at `npm publish` time via the `prepack` hook.
+
 ## [1.1.0]
 
 ### Features
@@ -31,5 +37,6 @@ Initial public release.
 - **Configurable WProofreader bundle URL** via `bundleUrl`, for customers running WProofreader from a non-default CDN host.
 - **Apache-2.0 licensed.**
 
+[1.2.0]: https://github.com/WebSpellChecker/wproofreader-learnosity/releases/tag/v1.2.0
 [1.1.0]: https://github.com/WebSpellChecker/wproofreader-learnosity/releases/tag/v1.1.0
 [1.0.0]: https://github.com/WebSpellChecker/wproofreader-learnosity/releases/tag/v1.0.0

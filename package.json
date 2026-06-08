@@ -1,6 +1,6 @@
 {
   "name": "@webspellchecker/wproofreader-learnosity",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "WProofreader for Learnosity. Spelling, grammar and style assistance inside Learnosity rich-text widgets.",
   "type": "module",
   "main": "src/index.js",
@@ -13,12 +13,18 @@
   },
   "files": [
     "src/",
+    "dist/",
     "README.md",
     "LICENSE",
     "CHANGELOG.md"
   ],
   "scripts": {
-    "test": "node --test tests/"
+    "test": "node --test tests/",
+    "build": "esbuild src/index.js --bundle --format=iife --global-name=LearnosityWProofreader '--footer:js=LearnosityWProofreader=LearnosityWProofreader.default;' --minify --outfile=dist/wproofreader-learnosity.min.js",
+    "prepack": "npm run build"
+  },
+  "devDependencies": {
+    "esbuild": "^0.23.0"
   },
   "keywords": [
     "learnosity",
