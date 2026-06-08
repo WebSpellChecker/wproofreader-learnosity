@@ -2,7 +2,7 @@
 
 WProofreader for Learnosity. Spelling, grammar and style assistance inside Learnosity rich-text widgets, with one function call.
 
-> v1.2.0. Apache-2.0. TypeScript definitions included. Two install paths: npm (ESM) and CDN (IIFE). Cloud and self-hosted WProofreader. Per-editor surface filter, lifecycle cleanup, locale-aware defaults, optional escape hatches for unusual host apps.
+> v1.2.1. Apache-2.0. TypeScript definitions included. Two install paths: npm (ESM) and CDN (IIFE). Cloud and self-hosted WProofreader. Per-editor surface filter, lifecycle cleanup, locale-aware defaults, optional escape hatches for unusual host apps.
 
 ## Install
 
@@ -27,7 +27,7 @@ LearnosityWProofreader.init({
 For host apps where adding a bundler is overkill (classic HTML, PHP, Python, Java, ASP.NET, Ruby), load the connector from jsDelivr:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@webspellchecker/wproofreader-learnosity@1.2.0/dist/wproofreader-learnosity.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@webspellchecker/wproofreader-learnosity@1.2.1/dist/wproofreader-learnosity.min.js"></script>
 <script>
   LearnosityWProofreader.init({
     wproofreader: { serviceId: 'YOUR_WPROOFREADER_SERVICE_ID' }

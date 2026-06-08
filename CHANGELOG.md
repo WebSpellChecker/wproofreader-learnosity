@@ -4,6 +4,12 @@ All notable changes to `@webspellchecker/wproofreader-learnosity`.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.2.1]
+
+### Features
+
+- **Published to npm.** `@webspellchecker/wproofreader-learnosity` is now available on the public npm registry. v1.2.1 is functionally identical to v1.2.0; the bump exists to mark the npm publication event so the jsDelivr URL documented in the README resolves.
+
 ## [1.2.0]
 
 ### Features
@@ -37,6 +43,7 @@ Initial public release.
 - **Configurable WProofreader bundle URL** via `bundleUrl`, for customers running WProofreader from a non-default CDN host.
 - **Apache-2.0 licensed.**
 
+[1.2.1]: https://github.com/WebSpellChecker/wproofreader-learnosity/releases/tag/v1.2.1
 [1.2.0]: https://github.com/WebSpellChecker/wproofreader-learnosity/releases/tag/v1.2.0
 [1.1.0]: https://github.com/WebSpellChecker/wproofreader-learnosity/releases/tag/v1.1.0
 [1.0.0]: https://github.com/WebSpellChecker/wproofreader-learnosity/releases/tag/v1.0.0
