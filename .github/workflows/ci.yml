@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    name: test and build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Unit tests
+        run: npm test
+
+      - name: Build the CDN bundle
+        run: npm run build
+
+      - name: Check bundle size
+        run: |
+          SIZE=$(wc -c < dist/wproofreader-learnosity.min.js)
+          echo "Bundle size: ${SIZE} bytes"
+          if [ "$SIZE" -gt 10240 ]; then
+            echo "::warning::CDN bundle exceeds 10 KB soft ceiling (${SIZE} bytes)"
+          fi
