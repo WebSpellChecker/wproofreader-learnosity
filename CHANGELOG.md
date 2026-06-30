@@ -4,6 +4,41 @@ All notable changes to `@webspellchecker/wproofreader-learnosity`.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.0.0]
+
+### Breaking
+
+- **`bundleUrl` option removed.** To point at a self-hosted or non-default
+  bundle, pass the WProofreader SDK's own `srcUrl` inside the `wproofreader`
+  block instead of the top-level `bundleUrl`:
+
+  ```js
+  // before
+  LearnosityWProofreader.init({ wproofreader: { serviceHost: '...' }, bundleUrl: '...' });
+  // after
+  LearnosityWProofreader.init({ wproofreader: { serviceHost: '...', srcUrl: '...' } });
+  ```
+
+### Added
+
+- **`appType` partner tag.** Forwarded to WProofreader so WebSpellChecker can
+  attribute traffic to this plugin. Fixed at `wpr_learnosity`; set by the plugin
+  and not caller-configurable.
+- **Named export.** The plugin can now be imported as
+  `import { LearnosityWProofreader } from '@webspellchecker/wproofreader-learnosity'`
+  in addition to the existing default import, mirroring the WProofreader SDK
+  (default plus named exports). Both resolve to the same object.
+
+### Changed
+
+- **Bundle loading delegated to the WProofreader SDK.** The plugin now uses
+  `@webspellchecker/wproofreader-sdk-js` to load the WProofreader bundle and
+  create instances, replacing the hand-rolled script injection and global
+  polling. The internal `window.WEBSPELLCHECKER_CONFIG` object is no longer set;
+  per-editor options are passed straight to the SDK's `init()` (so the SDK's
+  `srcUrl`, `lang`, etc. ride through the `wproofreader` block). The default
+  bundle URL is unchanged.
+
 ## [1.2.1]
 
 ### Features
@@ -43,6 +78,7 @@ Initial public release.
 - **Configurable WProofreader bundle URL** via `bundleUrl`, for customers running WProofreader from a non-default CDN host.
 - **Apache-2.0 licensed.**
 
+[2.0.0]: https://github.com/WebSpellChecker/wproofreader-learnosity/releases/tag/v2.0.0
 [1.2.1]: https://github.com/WebSpellChecker/wproofreader-learnosity/releases/tag/v1.2.1
 [1.2.0]: https://github.com/WebSpellChecker/wproofreader-learnosity/releases/tag/v1.2.0
 [1.1.0]: https://github.com/WebSpellChecker/wproofreader-learnosity/releases/tag/v1.1.0
