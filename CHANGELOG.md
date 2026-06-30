@@ -21,9 +21,6 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
-- **`appType` partner tag.** Forwarded to WProofreader so WebSpellChecker can
-  attribute traffic to this plugin. Fixed at `wpr_learnosity`; set by the plugin
-  and not caller-configurable.
 - **Named export.** The plugin can now be imported as
   `import { LearnosityWProofreader } from '@webspellchecker/wproofreader-learnosity'`
   in addition to the existing default import, mirroring the WProofreader SDK
