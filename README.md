@@ -2,11 +2,9 @@
 
 WProofreader for Learnosity. Spelling, grammar and style assistance inside Learnosity rich-text widgets, with one function call.
 
-> v1.2.1. Apache-2.0. TypeScript definitions included. Two install paths: npm (ESM) and CDN (IIFE). Cloud and self-hosted WProofreader. Per-editor surface filter, lifecycle cleanup, locale-aware defaults, optional escape hatches for unusual host apps.
-
 ## Install
 
-The connector offers two install paths. The runtime API is identical, `LearnosityWProofreader.init({...})` in both.
+The plugin offers two install paths. The runtime API is identical, `LearnosityWProofreader.init({...})` in both.
 
 ### Via npm (Node host apps)
 
@@ -15,19 +13,25 @@ npm install @webspellchecker/wproofreader-learnosity
 ```
 
 ```js
-import LearnosityWProofreader from '@webspellchecker/wproofreader-learnosity';
+import { LearnosityWProofreader } from '@webspellchecker/wproofreader-learnosity';
 
 LearnosityWProofreader.init({
   wproofreader: { serviceId: 'YOUR_WPROOFREADER_SERVICE_ID' }
 });
 ```
 
+The plugin is available as both a named and a default export, so a default import works too:
+
+```js
+import LearnosityWProofreader from '@webspellchecker/wproofreader-learnosity';
+```
+
 ### Via `<script>` tag (non-Node host apps)
 
-For host apps where adding a bundler is overkill (classic HTML, PHP, Python, Java, ASP.NET, Ruby), load the connector from jsDelivr:
+For host apps where adding a bundler is overkill (classic HTML, PHP, Python, Java, ASP.NET, Ruby), load the plugin from jsDelivr:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@webspellchecker/wproofreader-learnosity@1.2.1/dist/wproofreader-learnosity.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@webspellchecker/wproofreader-learnosity@2.0.0/dist/wproofreader-learnosity.min.js"></script>
 <script>
   LearnosityWProofreader.init({
     wproofreader: { serviceId: 'YOUR_WPROOFREADER_SERVICE_ID' }
@@ -35,19 +39,17 @@ For host apps where adding a bundler is overkill (classic HTML, PHP, Python, Jav
 </script>
 ```
 
-The bundle exposes a single global, `window.LearnosityWProofreader`, with the same `init` method. About 5 KB minified, no runtime dependencies. jsDelivr serves from npm, so the pinned URL above resolves once the package is published.
-
 ## Quickstart
 
 ```js
-import LearnosityWProofreader from '@webspellchecker/wproofreader-learnosity';
+import { LearnosityWProofreader } from '@webspellchecker/wproofreader-learnosity';
 
 // Before Learnosity widgets render.
 LearnosityWProofreader.init({
   wproofreader: { serviceId: 'YOUR_WPROOFREADER_SERVICE_ID' }
 });
 
-// Initialise Learnosity as normal. The connector attaches to longtextV2 editors automatically.
+// Initialise Learnosity as normal. The plugin attaches to longtextV2 editors automatically.
 LearnosityApp.init(signedRequest, {
   readyListener() { console.log('Learnosity ready'); },
   errorListener(err) { console.error(err); }
@@ -76,9 +78,9 @@ LearnosityWProofreader.init({
     serviceProtocol: 'https',
     serviceHost: 'localhost',
     servicePort: 443,
-    servicePath: '/wscservice/api'
-  },
-  bundleUrl: 'https://localhost/wscservice/wscbundle/wscbundle.js'
+    servicePath: '/wscservice/api',
+    srcUrl: 'https://localhost/wscservice/wscbundle/wscbundle.js'
+  }
 });
 ```
 
@@ -86,7 +88,7 @@ Either `wproofreader.serviceId` or `wproofreader.serviceHost` must be set; other
 
 ## Configuration
 
-`init()` takes a single options object with two groups: a nested `wproofreader` sub-object (forwarded to WProofreader unchanged) and connector-only fields at the top level.
+`init()` takes a single options object with two groups: a nested `wproofreader` sub-object (forwarded to WProofreader unchanged) and plugin-only fields at the top level.
 
 ### WProofreader options (under `wproofreader`)
 
@@ -99,39 +101,26 @@ These pass straight through to WProofreader's runtime config. The tables below c
 | `serviceHost`     | _none_                               | Self-hosted: WProofreader server hostname. Presence of `serviceHost` (or `serviceId`) is what activates `init()`. |
 | `servicePort`     | _none_                               | Self-hosted: port. |
 | `servicePath`     | _none_                               | Self-hosted: URL path to the WProofreader API. |
+| `srcUrl`          | _SDK default (cloud CDN)_            | SDK option: where to load `wscbundle.js` from. Override for a self-hosted deployment or non-default CDN; defaults to the WebSpellChecker cloud bundle. |
 | `enableGrammar`   | `true`                               | Grammar checking on top of spell checking. |
 | `autocorrect`     | `true`                               | Suggested replacement on typo accept. |
 | `lang`            | host page's `<html lang>`, or `en_US`| Read from `<html lang>` with `-` normalised to `_` (e.g. `en-US` → `en_US`). Falls back to `en_US` if the page does not set a `lang` or sets a bare un-regioned one (`en`, `fr`), because WProofreader expects region-qualified codes. Pass explicitly to override. |
 
 If neither `wproofreader.serviceId` nor `wproofreader.serviceHost` is set, `init()` no-ops with a console warning so the host app can call it unconditionally.
 
-### Connector options (top level)
+
+### Plugin options (top level)
 
 | Option            | Default       | Notes                                                  |
 |-------------------|---------------|--------------------------------------------------------|
 | `surfaces`        | `['author']`  | Subset of `['questions','items','author']`. **Per-editor** filter: each editor's ancestry is walked for surface-specific markers (`lrn-author*` → author, `lrn_player*` → items, otherwise → questions); editors whose surface is not in the allowed list are skipped. Default is Author only, for assessment integrity. Opt in to assessment proofreading explicitly with `['questions', 'items', 'author']`. |
 | `enableShorttext` | `false`       | Also attach to `shorttext` inputs (`<input type="text">`) inside Learnosity scope. Off by default because plain text inputs are usually short and proofreading them is noisy. |
 | `customSelectors` | `[]`          | Extra ancestor CSS selectors that count as "inside Learnosity scope" for unusual host apps. Each entry is matched via `element.matches`. |
-| `bundleUrl`       | (default CDN) | Override the WProofreader bundle URL for non-default CDNs or self-hosted servers. |
-
-### Examples
 
 ```js
-// Authoring-only (the default). No-ops on assessment pages.
-LearnosityWProofreader.init({
-  wproofreader: { serviceId: '...' }
-});
-
-// All three surfaces, including assessment. The host app should derive this
-// from server-side activity metadata so it cannot be flipped from the console.
 LearnosityWProofreader.init({
   wproofreader: { serviceId: '...' },
-  surfaces: ['questions', 'items', 'author']
-});
-
-// Unusual host app that wraps Learnosity inside its own container class.
-LearnosityWProofreader.init({
-  wproofreader: { serviceId: '...' },
+  surfaces: ['questions', 'items', 'author'],
   customSelectors: ['.my-host-app-learnosity-region']
 });
 ```
@@ -148,24 +137,14 @@ LearnosityWProofreader.init({
 
 ## Supported Learnosity versions
 
-Tested manually against the `latest-lts` channel. The connector tracks editor placement via the `lrn`-prefixed class convention plus a small per-surface marker set; class-rename changes between LTS releases are an isolated update in `src/index.js`.
+Tested manually against the `latest-lts` channel. The plugin tracks editor placement via the `lrn`-prefixed class convention plus a small per-surface marker set; class-rename changes between LTS releases are an isolated update in `src/index.js`.
 
 ## Documentation and support
 
 - **WProofreader product page**: <https://webspellchecker.com/wsc-proofreader/>
-- **Configuration reference** (every WProofreader option beyond what this connector documents): <https://webspellchecker.com/docs/api/wscbundle/Options.html>
-- **WProofreader SDK source** (the underlying library the connector wraps): <https://github.com/WebSpellChecker/wproofreader-sdk-js>
+- **Configuration reference** (every WProofreader option beyond what this plugin documents): <https://webspellchecker.com/docs/api/wscbundle/Options.html>
 - **Self-hosted server image**: <https://hub.docker.com/r/webspellchecker/wproofreader>
 - **Contact and commercial enquiries**: <https://webspellchecker.com/contact-us/>
-
-## Tests
-
-```bash
-npm install
-npm test
-```
-
-`npm test` runs the unit suite under `node --test`.
 
 ## License
 
