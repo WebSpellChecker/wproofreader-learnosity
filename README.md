@@ -31,7 +31,7 @@ import LearnosityWProofreader from '@webspellchecker/wproofreader-learnosity';
 For host apps where adding a bundler is overkill (classic HTML, PHP, Python, Java, ASP.NET, Ruby), load the plugin from jsDelivr:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@webspellchecker/wproofreader-learnosity@2.0.0/dist/wproofreader-learnosity.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@webspellchecker/wproofreader-learnosity@2.0.2/dist/wproofreader-learnosity.min.js"></script>
 <script>
   LearnosityWProofreader.init({
     wproofreader: { serviceId: 'YOUR_WPROOFREADER_SERVICE_ID' }
