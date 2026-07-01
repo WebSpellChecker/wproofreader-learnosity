@@ -1,6 +1,6 @@
 {
   "name": "@webspellchecker/wproofreader-learnosity",
-  "version": "2.0.0",
+  "version": "2.0.2",
   "description": "WProofreader for Learnosity. Spelling, grammar and style assistance inside Learnosity rich-text widgets.",
   "type": "module",
   "main": "src/index.js",
