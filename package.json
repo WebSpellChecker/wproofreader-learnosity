@@ -17,7 +17,7 @@
   ],
   "scripts": {
     "test": "node --test --import ./tests/register-stubs.mjs tests/*.test.js",
-    "build": "npm run build:iife && npm run build:esm",
+    "build": "rm -rf dist && npm run build:iife && npm run build:esm",
     "build:iife": "esbuild src/index.js --bundle --format=iife --global-name=LearnosityWProofreader '--footer:js=LearnosityWProofreader=LearnosityWProofreader.LearnosityWProofreader;' --minify --outfile=dist/wproofreader-learnosity.min.js",
     "build:esm": "esbuild src/index.js --bundle --format=esm --minify --outfile=dist/wproofreader-learnosity.esm.js",
     "prepack": "npm run build"
