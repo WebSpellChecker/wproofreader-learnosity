@@ -20,7 +20,7 @@ test('serviceId path: Cloud config with grammar/autocorrect/appType defaults', (
   assert.equal(config.wproofreader.serviceId, 'svc-123');
   assert.equal(config.wproofreader.enableGrammar, true);
   assert.equal(config.wproofreader.autocorrect, true);
-  assert.equal(config.wproofreader.appType, 'wpr_learnosity');
+  assert.equal(config.wproofreader.appType, 'learnosity_extension');
 });
 
 test('self-hosted service options pass through unchanged', () => {
@@ -50,12 +50,12 @@ test('enableGrammar and autocorrect can be turned off explicitly', () => {
 test('appType is set to the fixed partner tag', () => {
   const config = buildConfig({ wproofreader: { serviceId: 'svc' } });
   assert.equal(config.wproofreader.appType, APP_TYPE);
-  assert.equal(APP_TYPE, 'wpr_learnosity');
+  assert.equal(APP_TYPE, 'learnosity_extension');
 });
 
 test('appType is not caller-configurable: a supplied value is ignored', () => {
   const config = buildConfig({ wproofreader: { serviceId: 'svc', appType: 'custom_partner' } });
-  assert.equal(config.wproofreader.appType, 'wpr_learnosity');
+  assert.equal(config.wproofreader.appType, 'learnosity_extension');
 });
 
 test('explicit wproofreader.lang overrides defaultLang', (t) => {

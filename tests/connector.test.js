@@ -95,7 +95,7 @@ test('attaches via the SDK with the built wproofreader options incl. appType', a
   assert.equal(globalThis.__sdkInitCalls.length, 1);
   const { options } = globalThis.__sdkInitCalls[0];
   assert.equal(options.serviceId, 'svc-123');
-  assert.equal(options.appType, 'wpr_learnosity');
+  assert.equal(options.appType, 'learnosity_extension');
   assert.equal(options.enableGrammar, true);
   assert.equal(options.container, container);
 });

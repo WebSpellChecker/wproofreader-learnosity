@@ -17,9 +17,7 @@ export const SURFACE_GLOBALS = {
 // explicitly with `surfaces: ['questions', 'items', 'author']`.
 export const DEFAULT_SURFACES = ['author'];
 
-// Fixed partner tag so WebSpellChecker can attribute traffic to this plugin
-// (cf. the CKEditor 5 plugin's `proofreader_ck5`). Not caller-configurable.
-export const APP_TYPE = 'wpr_learnosity';
+export const APP_TYPE = 'learnosity_extension';
 
 /*
  * Split options into the WProofreader block (forwarded to the SDK's init()
