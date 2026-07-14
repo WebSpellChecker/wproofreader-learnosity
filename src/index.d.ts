@@ -27,7 +27,7 @@ export interface InitOptions {
   customSelectors?: ReadonlyArray<string>;
 }
 
-export declare class LearnosityWProofreader {
+declare class LearnosityWProofreader {
   static init(options?: InitOptions): void;
 }
 

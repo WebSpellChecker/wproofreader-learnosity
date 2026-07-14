@@ -8,13 +8,13 @@ import assert from 'node:assert/strict';
 // Cache-bust each import so the connector's static state doesn't leak between tests.
 async function freshConnector() {
   const mod = await import('../src/index.js?bust=' + Math.random());
-  return mod.LearnosityWProofreader;
+  return mod.default;
 }
 
-test('exposes the API as both a named and a default export of the same object', async () => {
+test('exposes the API as a default export only (no named export)', async () => {
   const mod = await import('../src/index.js?bust=' + Math.random());
-  assert.equal(typeof mod.LearnosityWProofreader.init, 'function');
-  assert.equal(mod.default, mod.LearnosityWProofreader);
+  assert.equal(typeof mod.default.init, 'function');
+  assert.equal(mod.LearnosityWProofreader, undefined);
 });
 
 // Minimal fake element. classList is a plain array (the connector only reads
@@ -95,7 +95,7 @@ test('attaches via the SDK with the built wproofreader options incl. appType', a
   assert.equal(globalThis.__sdkInitCalls.length, 1);
   const { options } = globalThis.__sdkInitCalls[0];
   assert.equal(options.serviceId, 'svc-123');
-  assert.equal(options.appType, 'learnosity_extension');
+  assert.equal(options.appType, 'wpr_learnosity');
   assert.equal(options.enableGrammar, true);
   assert.equal(options.container, container);
 });

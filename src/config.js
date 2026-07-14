@@ -17,7 +17,7 @@ export const SURFACE_GLOBALS = {
 // explicitly with `surfaces: ['questions', 'items', 'author']`.
 export const DEFAULT_SURFACES = ['author'];
 
-export const APP_TYPE = 'learnosity_extension';
+export const APP_TYPE = 'wpr_learnosity';
 
 /*
  * Split options into the WProofreader block (forwarded to the SDK's init()
