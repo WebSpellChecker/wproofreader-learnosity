@@ -4,6 +4,13 @@ All notable changes to `@webspellchecker/wproofreader-learnosity`.
 
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [2.1.0]
+
+### Changed
+
+- Default export only.
+- The `appType` partner tag sent to WProofreader is `wpr_learnosity`.
+
 ## [2.0.2]
 
 ### Changed
@@ -81,6 +88,7 @@ Initial public release.
 - **Configurable WProofreader bundle URL** via `bundleUrl`, for customers running WProofreader from a non-default CDN host.
 - **Apache-2.0 licensed.**
 
+[2.1.0]: https://github.com/WebSpellChecker/wproofreader-learnosity/releases/tag/v2.1.0
 [2.0.2]: https://github.com/WebSpellChecker/wproofreader-learnosity/releases/tag/v2.0.2
 [2.0.0]: https://github.com/WebSpellChecker/wproofreader-learnosity/releases/tag/v2.0.0
 [1.2.1]: https://github.com/WebSpellChecker/wproofreader-learnosity/releases/tag/v1.2.1

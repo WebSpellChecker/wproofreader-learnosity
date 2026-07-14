@@ -13,17 +13,11 @@ npm install @webspellchecker/wproofreader-learnosity
 ```
 
 ```js
-import { LearnosityWProofreader } from '@webspellchecker/wproofreader-learnosity';
+import LearnosityWProofreader from '@webspellchecker/wproofreader-learnosity';
 
 LearnosityWProofreader.init({
   wproofreader: { serviceId: 'YOUR_WPROOFREADER_SERVICE_ID' }
 });
-```
-
-The plugin is available as both a named and a default export, so a default import works too:
-
-```js
-import LearnosityWProofreader from '@webspellchecker/wproofreader-learnosity';
 ```
 
 ### Via `<script>` tag (non-Node host apps)
@@ -31,7 +25,7 @@ import LearnosityWProofreader from '@webspellchecker/wproofreader-learnosity';
 For host apps where adding a bundler is overkill (classic HTML, PHP, Python, Java, ASP.NET, Ruby), load the plugin from jsDelivr:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@webspellchecker/wproofreader-learnosity@2.0.2/dist/wproofreader-learnosity.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@webspellchecker/wproofreader-learnosity@latest/dist/wproofreader-learnosity.min.js"></script>
 <script>
   LearnosityWProofreader.init({
     wproofreader: { serviceId: 'YOUR_WPROOFREADER_SERVICE_ID' }
@@ -42,7 +36,7 @@ For host apps where adding a bundler is overkill (classic HTML, PHP, Python, Jav
 ## Quickstart
 
 ```js
-import { LearnosityWProofreader } from '@webspellchecker/wproofreader-learnosity';
+import LearnosityWProofreader from '@webspellchecker/wproofreader-learnosity';
 
 // Before Learnosity widgets render.
 LearnosityWProofreader.init({

@@ -7,7 +7,7 @@
  * creation are delegated to the WProofreader SDK; this class only decides which
  * editors to attach to and cleans them up when they leave the DOM.
  *
- *   import { LearnosityWProofreader } from '@webspellchecker/wproofreader-learnosity';
+ *   import LearnosityWProofreader from '@webspellchecker/wproofreader-learnosity';
  *   LearnosityWProofreader.init({ wproofreader: { serviceId: '...' } });
  */
 
@@ -227,5 +227,6 @@ class LearnosityWProofreader {
   }
 }
 
-export { LearnosityWProofreader };
+// Default export:
+//   import LearnosityWProofreader from '@webspellchecker/wproofreader-learnosity';
 export default LearnosityWProofreader;
